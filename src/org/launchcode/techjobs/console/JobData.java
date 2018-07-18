@@ -58,7 +58,13 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        return allJobs;
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<HashMap<String, String>>();
+
+        for(HashMap<String, String> row: allJobs){
+            jobs.add(row);
+        }
+
+        return jobs;
     }
 
 
