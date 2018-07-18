@@ -58,7 +58,13 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        return allJobs;
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<HashMap<String, String>>();
+
+        for(HashMap<String, String> row: allJobs){
+            jobs.add(row);
+        }
+
+        return jobs;
     }
 
 
@@ -109,6 +115,45 @@ public class JobData {
         }
 
         return jobs;
+    }
+
+    public static ArrayList<HashMap<String, String>> sort(ArrayList<HashMap<String, String>> someJobs){
+        int size = someJobs.size();
+        boolean notSorted = false;
+        do{
+            notSorted = false;
+            for(int i=0;i<size-1;i++){
+                HashMap<String, String> rowi = someJobs.get(i);
+                HashMap<String, String> rowj = someJobs.get(i+1);
+                if(rowi.get("name").compareToIgnoreCase(rowj.get("name")) > 0){
+                    HashMap<String, String> temp = rowi;
+                    someJobs.set(i, rowj);
+                    someJobs.set(i+1, temp);
+                    notSorted = true;
+                }
+            }
+        }while(notSorted);
+        return someJobs;
+    }
+
+    public static ArrayList<String> sortColumn(ArrayList<String> columns){
+        int size = columns.size();
+        boolean notSorted = false;
+        do{
+            notSorted = false;
+            for(int i=0;i<size-1;i++){
+                String strngi = columns.get(i);
+                String strngj = columns.get(i+1);
+
+                if(strngi.compareToIgnoreCase(strngj) > 0){
+                    String temp = strngi;
+                    columns.set(i, strngj);
+                    columns.set(i+1, temp);
+                    notSorted = true;
+                }
+            }
+        }while(notSorted);
+        return columns;
     }
 
     /**
