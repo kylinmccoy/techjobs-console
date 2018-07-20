@@ -43,6 +43,8 @@ public class TechJobs {
 
                     ArrayList<String> results = JobData.findAll(columnChoice);
 
+                    results = JobData.sortColumn(results);
+
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
 
                     // Print list of skills, employers, etc
@@ -113,8 +115,9 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         int i = 0;
-        for(HashMap<String, String> job:someJobs){
-            System.out.println("********** Job "+i+ " "+job.get("name")+" ************");
+        ArrayList<HashMap<String, String>> jobs = JobData.sort(someJobs);
+        for(HashMap<String, String> job:jobs){
+            System.out.println("********** "+job.get("name")+" ************");
             System.out.println("\tPosition Type: "+job.get("position type"));
             System.out.println("\tEmployer: "+job.get("employer"));
             System.out.println("\tLocation: "+job.get("location"));
